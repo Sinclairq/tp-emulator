@@ -3,6 +3,7 @@ A basic 100-loc CPU emulator using the existing capabilities of ntoskrnl.exe tha
 
 ## Usage
 The functions used in this project are undocumented by Microsoft. Initialize the defined function prototypes in the header file, then call EmuInstr( ) freely with the required parameters as described by the comments.
+
 Required functions:
 - KiTpEmulateInstruction
 - KiTpParseInstructionPrefix
