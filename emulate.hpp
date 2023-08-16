@@ -62,16 +62,16 @@ using _KiTpSetFlagsAdd = VOID ( * )( TpEmuInstr *Instr, TpEmuData *Cpu, ULONG64 
                                      ULONG64 AddBy );
 			
 // Required functions to emulate the base-line set of instructions... to be set to the correct symbol within ntoskrnl.			
-_KiTpEmulateInstruction KiTpEmulateInstruction = nullptr;
-_KiTpParseInstructionPrefix KiTpParseInstructionPrefix = nullptr;
-_KiTpReadImageData KiTpReadImageData = nullptr;
+static _KiTpEmulateInstruction KiTpEmulateInstruction = nullptr;
+static _KiTpParseInstructionPrefix KiTpParseInstructionPrefix = nullptr;
+static _KiTpReadImageData KiTpReadImageData = nullptr;
 
 //
 // Instr: The address of the instruction to be emulated...
 // Context: An input buffer to the starting context that will contain the updated context upon return
 // Record: An input exception record parameter that is populated if an error occurs during emulation (ex. access violations) 
 //
-TpEmuInstr EmulateInstr( PVOID Instr, PCONTEXT Context, PEXCEPTION_RECORD Record )
+static TpEmuInstr EmulateInstr( PVOID Instr, PCONTEXT Context, PEXCEPTION_RECORD Record )
 {
     if ( !KiTpReadImageData || !KiTpParseInstructionPrefix || !KiTpEmulateInstruction )
     {
